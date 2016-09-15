@@ -1,0 +1,13 @@
+[package]
+name = "rusty-lock"
+version = "0.1.0"
+authors = ["Friedel Ziegelmayer <dignifiedquire@gmail.com>"]
+license = "MIT"
+
+[lib]
+name = "rusty_lock"
+crate-type = ["dylib"]
+
+[dependencies]
+neon = "0.1"
+fs2 = "0.2.5"
