@@ -52,15 +52,17 @@ pub fn lock_error() -> Error {
 }
 
 fn fcntl(file: &File, flag: libc::c_int, l_type: libc::c_short) -> Result<()> {
+    println!("fnctl");
+     let mut fl: libc::flock = unsafe { mem::zeroed() };
+
+    fl.l_type = l_type;
+    fl.l_whence = libc::SEEK_SET as libc::c_short;
+
     let ret = unsafe {
-        libc::fcntl(file.as_raw_fd(), flag, &libc::flock{
-            l_type: l_type,
-            l_start: 0,
-            l_len: 0,
-            l_pid: 0,
-            l_whence: libc::SEEK_SET as libc::c_short
-        })
+        libc::fcntl(file.as_raw_fd(), flag, &fl as *const libc::flock)
     };
+
+    println!("return {}", ret);
     if ret < 0 { Err(Error::last_os_error()) } else { Ok(()) }
 }
 

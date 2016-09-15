@@ -16,7 +16,7 @@ fn try_lock_exclusive(call: Call) -> JsResult<JsUndefined> {
     let string: Handle<JsString> = try!(try!(call.arguments.require(scope, 0)).check::<JsString>());
     let path = &string.value()[..];
 
-    let f = fs::OpenOptions::new().write(true).create(true).open(&path).unwrap();
+    let f = fs::OpenOptions::new().read(true).write(true).create(true).open(&path).unwrap();
 
     println!("try locking {}", &path);
 

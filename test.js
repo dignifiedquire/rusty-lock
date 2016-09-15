@@ -15,10 +15,10 @@ lock.lock(lockfile)
 console.log('second lock')
 lock.lock(lockfile)
 
-console.log('unlocking')
-console.log(lock.unlock(lockfile))
+setTimeout(() => {
+  console.log('unlocking')
+  console.log(lock.unlock(lockfile))
 
-console.log('third lock')
-lock.lock(lockfile)
-
-console.log(fs.readdirSync('./'))
+  console.log('third lock')
+  lock.lock(lockfile)
+}, 5 * 1000)
