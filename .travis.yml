@@ -1,0 +1,25 @@
+language: rust
+
+rust:
+- 1.1.0
+- nightly
+
+os:
+  - linux
+  - osx
+
+before_script:
+  - pip install 'travis-cargo<0.2' --user
+  - export PATH=$HOME/.local/bin:$PATH              # Linux
+  - export PATH=$HOME/Library/Python/2.7/bin:$PATH  # OS X
+
+script:
+  - |
+      travis-cargo build &&
+      travis-cargo --only nightly test &&
+      travis-cargo bench &&
+      travis-cargo --only nightly doc
+
+env:
+  global:
+  - TRAVIS_CARGO_NIGHTLY_FEATURE=""
