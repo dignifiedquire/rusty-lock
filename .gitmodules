@@ -1,0 +1,3 @@
+[submodule "native/src/fs2-rs"]
+	path = native/src/fs2-rs
+	url = git@github.com:danburkert/fs2-rs.git

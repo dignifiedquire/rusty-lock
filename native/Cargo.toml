@@ -10,4 +10,6 @@ crate-type = ["dylib"]
 
 [dependencies]
 neon = "0.1"
-fs2 = "0.2.5"
+
+[dependencies.fs2]
+path = "src/fs2-rs"
